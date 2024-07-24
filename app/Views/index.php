@@ -100,6 +100,38 @@
     </div>
     <!-- Edit Post Modal End -->
 
+
+
+    
+    <!-- Detail Post Modal Start -->
+    <div class="modal fade" id="detail_post_modal" tabindex="-1" aria-labelledby="editPostLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editPostLabel">Post Detail</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                    <input type="hidden" name="id" id="edit_pid">
+                    <input type="hidden" name="old_image" id="edit_old_image">
+                    <div class="modal-body">
+                       <img src="" id="detail_post_image" class="img-fluid w-100">
+                        <h3 id="detail_post_title" class="my-3 text-dark fs-4"></h3>
+                        <h4 id="detail_post_category" class="my-2 text-secondary fs-5"></h4>
+                        <p id="detail_post_body" class="my-3 text-dark fs-6"></p>
+                        <p id="detail_post_created"class="fst-italic"></p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- Detail Post Modal End -->
+
+
+
+
     <div class="container">
         <div class="row my-4">
             <div class="col-lg-12">
@@ -243,7 +275,23 @@
 
 
 
-
+// post detail ajax request
+$(document).delegate('.post_detail_btn','click',function(e){
+    e.preventDefault();
+    const id=$(this).attr('id');
+    $.ajax({
+        url:'<?= base_url('post/detail')?>/'+id,
+        method:'get',
+        success:function(response){
+            console.log(response);
+            $("#detail_post_image").attr('src','<?= base_url('uploads/avatar/')?>/'+response.message.image);
+            $("#detail_post_title").text(response.message.title);
+            $("#detail_post_category").text(response.message.category);
+            $("#detail_post_body").text(response.message.body);
+            $("#detail_post_created").text(response.message.created_at);
+        }
+    })
+})
 
 
 

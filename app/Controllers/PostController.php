@@ -60,7 +60,7 @@ class PostController extends BaseController
             foreach ($posts as $post) {
                 $data .= '  <div class="col-md-4">
                                 <div class="card shadow-sm">
-                                    <a href="#" id="' . $post['id'] . '" class="post_detail_btn"><img
+                                    <a href="#" id="' . $post['id'] . '"data-bs-toggle="modal" data-bs-target="#detail_post_modal" class="post_detail_btn"><img
                                             src="uploads/avatar/' . $post['image'] . '"class="img-fluid card-img-top">
                                             </a>
                                     <div class="card-body">
@@ -155,5 +155,15 @@ class PostController extends BaseController
            'error' => false,
           'message' => 'Post deleted successfully'
        ]);
+    }
+
+    // detail post ajax request
+    public function detail($id = null){
+        $postModel = new \App\Models\PoseModel();
+        $post = $postModel->find($id);
+        return $this->response->setJSON([
+            'error' => false,
+           'message' => $post
+        ]);
     }
 }    
