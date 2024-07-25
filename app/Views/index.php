@@ -115,7 +115,9 @@
                     <input type="hidden" name="old_image" id="edit_old_image">
                     <div class="modal-body">
                        <img src="" id="detail_post_image" class="img-fluid w-100">
-                        <h3 id="detail_post_title" class="my-3 text-dark fs-4"></h3>
+                        <h3 id="detail_post_title" class="my-3 text-dark fs-4">
+                            
+                        </h3>
                         <h4 id="detail_post_category" class="my-2 text-secondary fs-5"></h4>
                         <p id="detail_post_body" class="my-3 text-dark fs-6"></p>
                         <p id="detail_post_created"class="fst-italic"></p>
